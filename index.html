@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- General -->
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Demo | Fashion Store</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+	<!-- Loading Necessary Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700;800&family=Montserrat:wght@100;300;400;500;600;700&display=swap"
+		rel="stylesheet">
+</head>
+<style>
+	/* General Css */
+	html {
+		width: 100vw;
+		height: 100vh;
+		font-family: 'Noto Sans JP', sans-serif;
+		color: #363636;
+		background-color: #fff;
+		overflow: hidden;
+	}
+
+	body {
+		margin: 0
+	}
+
+	a {
+		text-decoration: none;
+		color: #363636
+	}
+
+	.center {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	/* Css for scroll bar */
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+		border-radius: 8px;
+	}
+
+	::-webkit-scrollbar-button {
+		display: none;
+	}
+
+	::-webkit-scrollbar-corner,
+	::-webkit-scrollbar-track {
+		background: #e1e1e1;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #757575;
+		border-radius: 8px;
+	}
+
+	/* Background Css */
+	.page-background-box {
+		width: 100%;
+		height: 100vh;
+		position: absolute;
+		overflow: hidden;
+	}
+
+	.pattern-1 {
+		position: absolute;
+		top: -80px;
+		right: -80px;
+		width: 160px;
+	}
+
+	.pattern-2 {
+		position: absolute;
+		width: 150px;
+		left: -75px;
+		top: 50%;
+	}
+
+	.pattern-3 {
+		position: absolute;
+		left: 50%;
+		top: 35%;
+		transform: translate(-50%, -50%);
+		width: 90px;
+		opacity: 0.5;
+	}
+
+	/* Navbar Css*/
+	.main-body {
+		position: relative;
+		width: 80%;
+		height: 100vh;
+		margin: auto;
+	}
+
+	.navbar {
+		width: 100%;
+		height: 60px;
+		border-bottom: 1px solid #f7f7f7;
+		display: inline-flex;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.hamburger-icon {
+		display: none;
+	}
+
+	.logo-box {
+		display: inline-flex;
+		width: 100px;
+	}
+
+	.logo {
+		display: inline-block;
+		padding: 18px 0;
+	}
+
+	.logo-text {
+		display: inline-block;
+		margin: 0;
+		padding: 18px 9px;
+		line-height: 24px;
+		font-weight: 600;
+	}
+
+	.menu-options-wrapper {
+		display: inline-block;
+		width: calc(100% - 148px);
+		text-align: center;
+	}
+
+	.menu-options {
+		display: inline-flex;
+	}
+
+	.menu-item {
+		padding: 18px 12px;
+		margin: 0 8px;
+		font-size: 14px;
+		line-height: 25px;
+		font-weight: 600;
+		opacity: 0.5;
+		cursor: pointer;
+	}
+
+	.menu-item-active {
+		opacity: 1;
+		border-bottom: 2px solid #e8b601;
+		padding-bottom: 16px;
+	}
+
+	.search-box {
+		padding: 18px 0;
+		float: right;
+		width: 48px;
+		text-align: center;
+	}
+
+	/* Body Css */
+	.body {
+		display: grid;
+		grid-template-columns: 3fr 2fr;
+		padding: 30px 0 0 0;
+	}
+
+	.grid-item {
+		width: 100%;
+		position: relative;
+	}
+
+	.text-box {
+		padding-bottom: 12px;
+	}
+
+	.title-name {
+		font-family: 'Lora', serif;
+		color: #232323;
+		font-size: 38px;
+	}
+
+	.sub-title {
+		font-family: 'Montserrat', sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		width: 65%;
+		line-height: 24px;
+		color: #363636;
+		margin: 24px 0;
+	}
+
+	.view-all-text {
+		font-family: 'Lora', serif;
+		margin-bottom: 30px;
+		margin-top: 0;
+		cursor: pointer;
+		font-weight: 700;
+		display: inline-block;
+	}
+
+	.view-all-text:hover {
+		text-decoration: underline;
+	}
+
+	.image-grid-box {
+		width: 90%;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.gallery-img {
+		height: 250px;
+		cursor: pointer;
+	}
+
+	.color-box {
+		width: 300px;
+		height: 416px;
+		background-image: linear-gradient(#f3bf4a, #e8b601);
+		left: calc(50% + 48px);
+		top: calc(50% + 48px);
+	}
+
+	.main-img {
+		width: 300px;
+		height: 416px;
+		position: absolute;
+		left: -48px;
+		top: -48px;
+	}
+
+	/* Small to medium tablet */
+	@media only screen and (max-width: 1050px) {
+		.main-body {
+			width: 96%;
+		}
+
+		.body {
+			display: block;
+		}
+
+		.grid-item {
+			height: calc(50vh - 30px);
+		}
+	}
+
+	@media only screen and (max-width: 800px) {
+		html {
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+
+		.body {
+			width: 90%;
+			margin: auto;
+		}
+
+		.page-background-box {
+			display: none;
+		}
+
+		.navbar {
+			display: block;
+		}
+
+		.logo-box {
+			width: 150px;
+		}
+
+		.hamburger-icon {
+			display: inline-block;
+			padding: 18px 8px;
+			vertical-align: top;
+		}
+
+		.menu-options-wrapper {
+			display: none;
+		}
+
+		.grid-item {
+			margin-bottom: 48px;
+		}
+
+		.image-grid-box {
+			width: 100%;
+		}
+
+		.gallery-img {
+			width: 85%;
+			height: unset;
+		}
+
+		.color-box {
+			width: 80%;
+			height: 40vh;
+			left: calc(50% + 24px);
+			top: calc(50% + 24px);
+		}
+
+		.main-img {
+			width: 90%;
+			height: unset;
+			left: -24px;
+			top: -24px;
+		}
+	}
+
+	@media only screen and (max-width: 1024px) and (orientation: landscape) {
+		html {
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+
+		.grid-item {
+			height: calc(500px);
+		}
+	}
+</style>
+
+<body>
+	<!-- Page Background -->
+	<div class="page-background-box">
+		<img class="pattern-1" src="https://s7.gifyu.com/images/pattern-1.png">
+		<img class="pattern-2" src="https://s7.gifyu.com/images/pattern-1.png">
+	</div>
+	<!-- Page Body -->
+	<div class="main-body">
+		<nav class="navbar">
+			<div class="logo-box">
+				<svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+					width="24">
+					<path d="M0 0h24v24H0V0z" fill="none"></path>
+					<path d="M4 15h16v-2H4v2zm0 4h16v-2H4v2zm0-8h16V9H4v2zm0-6v2h16V5H4z"></path>
+				</svg>
+				<svg class="logo" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24"
+					viewBox="0 0 24 24" width="24">
+					<g>
+						<rect fill="none" height="24" width="24" />
+					</g>
+					<g>
+						<g>
+							<path
+								d="M6.05,8.05c-2.73,2.73-2.73,7.15-0.02,9.88c1.47-3.4,4.09-6.24,7.36-7.93c-2.77,2.34-4.71,5.61-5.39,9.32 c2.6,1.23,5.8,0.78,7.95-1.37C19.43,14.47,20,4,20,4S9.53,4.57,6.05,8.05z"
+								fill="#e8b601" />
+						</g>
+					</g>
+				</svg>
+				<p class="logo-text">Trendz</p>
+			</div>
+			<div class="menu-options-wrapper">
+				<div class="menu-options">
+					<p class="menu-item menu-item-active">Home</p>
+					<p class="menu-item">Collections</p>
+					<p class="menu-item">About</p>
+					<p class="menu-item">Contact</p>
+				</div>
+			</div>
+			<div class="search-box">
+				<svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+					<path d="M0 0h24v24H0z" fill="none" />
+					<path
+						d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+				</svg>
+			</div>
+		</nav>
+		<div class="body">
+			<div class="grid-item">
+				<div class="text-box">
+					<h1 class="title-name">Summer Specials</h1>
+					<p class="sub-title">Get the latest designed summer trends and find the best outfit for you</p>
+					<p class="view-all-text">View All</p>
+				</div>
+				<div class="image-grid-box">
+					<img class="gallery-img" src="https://s7.gifyu.com/images/fashion-store-1.jpg">
+					<img class="gallery-img" src="https://s7.gifyu.com/images/fashion-store-2.jpg">
+					<img class="gallery-img" src="https://s7.gifyu.com/images/fashion-store-3.jpg">
+				</div>
+			</div>
+			<div class="grid-item">
+				<div class="color-box center">
+					<img class="main-img" src="https://s7.gifyu.com/images/fashion-store-main.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
